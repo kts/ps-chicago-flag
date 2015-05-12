@@ -1,2 +1,12 @@
-# ps-chicago-flag
-Postscript program to generate the Chicago Flag
+# Postscript Chicago flag
+
+flag.ps is a PostScript program to generate 
+the [Chicago Flag](http://en.wikipedia.org/wiki/Flag_of_Chicago).  This is meant as a demo of the 
+PostScript language.
+
+Run (using convert utility from ImageMagick):
+
+$ convert -page 720x480 flag.ps flag.png
+
+![flag](https://raw.github.com/kts/ps-chicago-flag/blob/master/flag.png)
+

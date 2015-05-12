@@ -1,0 +1,61 @@
+% Chicago Flag in Postscript
+/numstar   4   def
+/width     720 def % total flag w,h
+/height    480 def
+/pw        16  def % pw,ph control size of points
+/ph        60  def
+/star0     150 def % x-location of first star center
+/barheight 80  def
+/redRGB    [   1    0    0] def
+/blueRGB   [.702 .867 .949] def % #b3ddf2
+
+/setcolor {
+    aload pop setrgbcolor
+} def
+
+/bars {
+  0     120  moveto
+  width 0    rlineto
+
+  0     360  moveto
+  width 0    rlineto
+  
+  barheight setlinewidth
+  blueRGB setcolor
+  stroke
+} def
+
+% draw one point for six-pointed star
+/point  {
+  pw neg  0      moveto
+  pw      ph     rlineto
+  pw      ph neg rlineto
+} def
+
+% draw one star
+/star {
+  6 {
+    point
+    60 rotate
+  } repeat
+} def
+
+/stars {    
+   % compute horiz distance between stars
+   % (equally spaced with pad 10 on both sides)
+   % sdist = (width - 20)/(numstar+1)
+   /sdist width 20 sub numstar 1 add div def
+
+   10 sdist add height 2 div translate % move to first
+   numstar {
+     star
+     sdist 0 translate
+   } repeat
+   
+   redRGB setcolor
+   fill
+} def
+
+%---main---
+bars
+stars
