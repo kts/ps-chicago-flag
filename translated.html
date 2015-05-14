@@ -75,9 +75,10 @@ td{
 <span class="nv">/height</span>    <span class="mf">480</span> <span class="nf">def</span>
 <span class="nv">/pw</span>        <span class="mf">16</span>  <span class="nf">def</span> <span class="c1">% pw,ph control size of points</span>
 <span class="nv">/ph</span>        <span class="mf">60</span>  <span class="nf">def</span>
+<span class="nv">/npoint</span>     <span class="mf">4</span>  <span class="nf">def</span> <span class="c1">% num points on a star</span>
 <span class="nv">/barheight</span> <span class="mf">80</span>  <span class="nf">def</span>
-<span class="nv">/redRGB</span>    <span class="p">[</span>   <span class="mf">1</span>    <span class="mf">0</span>    <span class="mf">0</span><span class="p">]</span> <span class="nf">def</span>
-<span class="nv">/blueRGB</span>   <span class="p">[</span><span class="mf">.702</span> <span class="mf">.867</span> <span class="mf">.949</span><span class="p">]</span> <span class="nf">def</span> <span class="c1">% #b3ddf2</span>
+<span class="nv">/starRGB</span>   <span class="p">[</span>   <span class="mf">1</span>    <span class="mf">0</span>    <span class="mf">0</span><span class="p">]</span> <span class="nf">def</span>
+<span class="nv">/barRGB</span>    <span class="p">[</span><span class="mf">.702</span> <span class="mf">.867</span> <span class="mf">.949</span><span class="p">]</span> <span class="nf">def</span> <span class="c1">% #b3ddf2</span>
 
 <span class="nv">/setcolor</span> <span class="p">{</span>
     <span class="nf">aload</span> <span class="nf">pop</span> <span class="nf">setrgbcolor</span>
@@ -91,7 +92,7 @@ td{
   <span class="nf">width</span> <span class="mf">0</span>    <span class="nf">rlineto</span>
   
   <span class="nf">barheight</span> <span class="nf">setlinewidth</span>
-  <span class="nf">blueRGB</span> <span class="nf">setcolor</span>
+  <span class="nf">barRGB</span> <span class="nf">setcolor</span>
   <span class="nf">stroke</span>
 <span class="p">}</span> <span class="nf">def</span>
 
@@ -104,9 +105,10 @@ td{
 
 <span class="c1">% draw one star</span>
 <span class="nv">/star</span> <span class="p">{</span>
-  <span class="mf">6</span> <span class="p">{</span>
+  <span class="nv">/degrees</span> <span class="mf">360</span> <span class="nf">npoint</span> <span class="nf">div</span> <span class="nf">def</span>
+  <span class="nf">npoint</span> <span class="p">{</span>
     <span class="nf">point</span>
-    <span class="mf">60</span> <span class="nf">rotate</span>
+    <span class="nf">degrees</span> <span class="nf">rotate</span>
   <span class="p">}</span> <span class="nf">repeat</span>
 <span class="p">}</span> <span class="nf">def</span>
 
@@ -122,7 +124,7 @@ td{
      <span class="nf">sdist</span> <span class="mf">0</span> <span class="nf">translate</span>
    <span class="p">}</span> <span class="nf">repeat</span>
    
-   <span class="nf">redRGB</span> <span class="nf">setcolor</span>
+   <span class="nf">starRGB</span> <span class="nf">setcolor</span>
    <span class="nf">fill</span>
 <span class="p">}</span> <span class="nf">def</span>
 
@@ -135,9 +137,10 @@ td{
 <span class="n">height</span>    <span class="o">=</span> <span class="mi">480</span>
 <span class="n">pw</span>        <span class="o">=</span> <span class="mi">16</span>
 <span class="n">ph</span>        <span class="o">=</span> <span class="mi">60</span>
+<span class="n">npoint</span>    <span class="o">=</span> <span class="mi">4</span>
 <span class="n">barheight</span> <span class="o">=</span> <span class="mi">80</span>
-<span class="n">redRGB</span>    <span class="o">=</span> <span class="p">[</span>   <span class="mi">1</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,]</span>
-<span class="n">blueRGB</span>   <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="mi">702</span><span class="p">,</span> <span class="o">.</span><span class="mi">867</span><span class="p">,</span> <span class="o">.</span><span class="mi">949</span><span class="p">,]</span>
+<span class="n">starRGB</span>   <span class="o">=</span> <span class="p">[</span>   <span class="mi">1</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,]</span>
+<span class="n">barRGB</span>    <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="mi">702</span><span class="p">,</span> <span class="o">.</span><span class="mi">867</span><span class="p">,</span> <span class="o">.</span><span class="mi">949</span><span class="p">,]</span>
 
 <span class="k">def</span> <span class="nf">setcolor</span><span class="p">(</span><span class="n">rgb</span><span class="p">):</span>
     <span class="n">setrgbcolor</span><span class="p">(</span><span class="o">*</span><span class="n">rgb</span><span class="p">)</span>
@@ -151,7 +154,7 @@ td{
     <span class="n">rlineto</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
   
     <span class="n">setlinewidth</span><span class="p">(</span><span class="n">barheight</span><span class="p">)</span>
-    <span class="n">setcolor</span><span class="p">(</span><span class="n">blueRGB</span><span class="p">)</span>
+    <span class="n">setcolor</span><span class="p">(</span><span class="n">barRGB</span><span class="p">)</span>
     <span class="n">stroke</span><span class="p">()</span>
 
 
@@ -164,9 +167,10 @@ td{
 
 <span class="k">def</span> <span class="nf">star</span><span class="p">():</span>
     <span class="s">&quot;draw one star&quot;</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="n">degrees</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">npoint</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">npoint</span><span class="p">):</span>
         <span class="n">point</span><span class="p">()</span>
-        <span class="n">rotate</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+        <span class="n">rotate</span><span class="p">(</span><span class="n">degrees</span><span class="p">)</span>
 
 
 
@@ -182,7 +186,7 @@ td{
         <span class="n">translate</span><span class="p">(</span><span class="n">sdist</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 
    
-    <span class="n">setcolor</span><span class="p">(</span><span class="n">redRGB</span><span class="p">)</span>
+    <span class="n">setcolor</span><span class="p">(</span><span class="n">starRGB</span><span class="p">)</span>
     <span class="n">fill</span><span class="p">()</span>
 
 

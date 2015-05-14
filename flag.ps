@@ -5,9 +5,10 @@
 /height    480 def
 /pw        16  def % pw,ph control size of points
 /ph        60  def
+/npoint     4  def % num points on a star
 /barheight 80  def
-/redRGB    [   1    0    0] def
-/blueRGB   [.702 .867 .949] def % #b3ddf2
+/starRGB   [   1    0    0] def
+/barRGB    [.702 .867 .949] def % #b3ddf2
 
 /setcolor {
     aload pop setrgbcolor
@@ -21,7 +22,7 @@
   width 0    rlineto
   
   barheight setlinewidth
-  blueRGB setcolor
+  barRGB setcolor
   stroke
 } def
 
@@ -34,9 +35,10 @@
 
 % draw one star
 /star {
-  6 {
+  /degrees 360 npoint div def
+  npoint {
     point
-    60 rotate
+    degrees rotate
   } repeat
 } def
 
@@ -52,7 +54,7 @@
      sdist 0 translate
    } repeat
    
-   redRGB setcolor
+   starRGB setcolor
    fill
 } def
 

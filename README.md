@@ -1,4 +1,4 @@
-# Postscript Chicago flag
+# PostScript Chicago flag
 
 `flag.ps` is a PostScript program to generate 
 the [Chicago Flag](http://en.wikipedia.org/wiki/Flag_of_Chicago).
@@ -11,11 +11,16 @@ Run (using convert utility from ImageMagick):
 ![flag](https://raw.githubusercontent.com/kts/ps-chicago-flag/master/flag.png)
 
 View a Postscript / Python comparison of the code
-[here](https://raw.githubusercontent.com/kts/ps-chicago-flag/master/translated.html)
+[here](http://kenschutte.com/chipy-postscript/translated.html)
 
 Note that it is written in a very parametric way. For example,
-try changing the first line,
+try changing some of the values at the top,
 
-    /numstar   4   def
+    /numstar 3 def
+    /npoint  5 def
+    /starRGB [1 .5 0] def
+    /barRGB  [0  0 1] def
 
-to a different number and run `convert` again.
+and run `convert` again to get a different result:
+
+![flag](https://raw.githubusercontent.com/kts/ps-chicago-flag/master/mod.png)
