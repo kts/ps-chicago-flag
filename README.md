@@ -11,7 +11,7 @@ Run (using convert utility from ImageMagick):
 ![flag](https://raw.githubusercontent.com/kts/ps-chicago-flag/master/flag.png)
 
 View a Postscript / Python comparison of the code
-[here](https://raw.githubusercontent.com/kts/ps-chicago-flag/master/translated.html)
+[here](translated.html)
 
 Note that it is written in a very parametric way. For example,
 try changing the first line,
