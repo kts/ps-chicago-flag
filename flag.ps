@@ -1,17 +1,24 @@
-% Chicago Flag in Postscript
-% by Ken Schutte
-/numstar   4   def
-/width     720 def % total flag w,h
+
+/width     720 def
 /height    480 def
+/numstar   4   def
 /pw        16  def % pw,ph control size of points
 /ph        60  def
 /npoint     6  def % num points on a star
 /barheight 80  def
-/starRGB   [   1    0    0] def
-/barRGB    [.702 .867 .949] def % #b3ddf2
+/starRGB       [   1    0    0] def % red
+/barRGB        [.702 .867 .949] def % light-blue
+/backgroundRGB [   1    1    1] def % white
 
 /setcolor {
+    % this allows color to be specified as
+    % an array [r,g,b] rather than 3 separate vars
     aload pop setrgbcolor
+} def
+
+/background {
+  backgroundRGB setcolor
+  0 0 width height rectfill
 } def
 
 /bars {
@@ -26,7 +33,7 @@
   stroke
 } def
 
-% draw one point for six-pointed star
+% draw one point for in a star (a triangle)
 /point  {
   pw neg  0      moveto
   pw      ph     rlineto
@@ -42,13 +49,15 @@
   } repeat
 } def
 
-/stars {    
+/stars {
+    
    % compute horiz distance between stars
    % (equally spaced with pad 10 on both sides)
-   % sdist = (width - 20)/(numstar+1)
+   % ie sdist = (width - 20)/(numstar+1)
    /sdist width 20 sub numstar 1 add div def
 
-   10 sdist add height 2 div translate % move to first
+   % move to first:
+   10 sdist add height 2 div translate
    numstar {
      star
      sdist 0 translate
@@ -59,5 +68,8 @@
 } def
 
 %---main---
+background
 bars
 stars
+
+showpage
